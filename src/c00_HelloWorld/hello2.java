@@ -5,7 +5,7 @@ public class hello2 {
         Student firstStudent = new Student("Tom");
         Student secondStudent = new Student("Jerry");
 //        firstStudent.setAge(17);
-        secondStudent.setAge(10);
+        secondStudent.setAge(11);
         firstStudent.sayHello();
         secondStudent.sayHello();
         Student thirdStudent = null;
