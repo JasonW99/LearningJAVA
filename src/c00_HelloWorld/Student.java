@@ -3,7 +3,7 @@ package c00_HelloWorld;
 public class Student {
     public int age = 23;
     //(member) field: the field value is stick to the object. and we set a initial value to it as 23.
-    //i.e. some objects equal to 18, some objects equal to 22.
+    //i.e. some objects equal to 19, some objects equal to 22.
     private final String name;
     //(constant) field: once assigned value to the field, the value cannot change any more.
     private static String school;
@@ -16,6 +16,7 @@ public class Student {
     //define the constructor
     public Student(String name) {
         this.name = name;
+
     }
 
     //define some method
@@ -23,12 +24,12 @@ public class Student {
         return age;
     }
 
-    public void setAge(int age) {   //(member) method, setter
-        this.age = age;
-    }
-
     public String getName(){    //(member) method, getter or accessor
         return name;
+    }
+
+    public void setAge(int age) {   //(member) method, setter
+        this.age = age;
     }
 
     public void sayHello(){    //(member) method
