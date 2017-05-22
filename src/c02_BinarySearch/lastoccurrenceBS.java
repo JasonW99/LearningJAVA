@@ -2,6 +2,9 @@ package c02_BinarySearch;
 
 public class lastoccurrenceBS {
     public int solve(int[] array, int target) {
+        if (array == null || array.length == 0){
+            return -1;
+        }
         int start = 0;
         int end = array.length - 1;
         while (start < end - 1) {
