@@ -20,7 +20,7 @@ A = {1, 2, 5, 9, 12, ......}, T = 7, return -1
 // You can use it directly, the implementation is provided when testing your solution.
 
 /*
-package c02_BinarySearch;
+package c03_BinarySearch;
 
 public class searchinunknownsize {
     public int search(Dictionary dict, int target) {

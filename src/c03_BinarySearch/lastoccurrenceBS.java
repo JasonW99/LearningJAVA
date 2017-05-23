@@ -1,4 +1,4 @@
-package c02_BinarySearch;
+package c03_BinarySearch;
 
 public class lastoccurrenceBS {
     public int solve(int[] array, int target) {
