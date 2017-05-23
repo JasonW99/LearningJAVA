@@ -4,8 +4,11 @@ import java.util.Arrays;
 
 public class kclosestBS {
     public int[] solve(int[] array, int target, int K){
-        if (array == null || array.length <= 1){
+        if (array == null || array.length == 0){
             return array;
+        }
+        if(K == 0) {
+            return new int[0];
         }
         int size = Math.min(K, array.length);
         int[] result =new int[size];
@@ -14,7 +17,7 @@ public class kclosestBS {
         int right = initial + 1;
         result[0] = array[initial];
         for (int i = 1; i < size; i++){
-            if(left == -1 || (right != array.length && closer(array, target, right, left))) {
+            if(left < 0 || (right < array.length && closer(array, target, right, left))) {
                 result[i] = array[right++];
             }else {
                 result[i] = array[left--];
@@ -45,8 +48,8 @@ public class kclosestBS {
 
     public static void main(String[] args) {
         kclosestBS test = new kclosestBS();
-        int[] input = {1, 4, 6, 8};
-        int T = 8;
+        int[] input = {1,3,3,6,9,9,12,15};
+        int T = 10;
         int K = 5;
         int[] result = test.solve(input, T, K);
         System.out.println(Arrays.toString(result));
