@@ -4,46 +4,46 @@ import java.util.Deque;
 import java.util.LinkedList;
 
 public class queueBY2stack {
-    private Deque<Integer> A;
-    private Deque<Integer> B;
+    private Deque<Integer> IN;
+    private Deque<Integer> OUT;
 
     public queueBY2stack() {
-        A = new LinkedList<>();
-        B = new LinkedList<>();
+        IN = new LinkedList<>();
+        OUT = new LinkedList<>();
     }
 
     public Integer poll() {
-        if (this.isEmpty()) { //note that if A is empty, then it cannot 'pop', but can 'peek'.
+        if (this.isEmpty()) { //note that if IN is empty, then it cannot 'pop', but can 'peek'.
             return null;
         }
-        if (B.isEmpty()) {
-            move2B();
+        if (OUT.isEmpty()) {
+            move2OUT();
         }
-        return B.pop();
+        return OUT.pop();
     }
 
     public void offer(int element) {
-        A.push(element);
+        IN.push(element);
     }
 
     public Integer peek() {
-        if (B.isEmpty()) {
-            move2B();
+        if (OUT.isEmpty()) {
+            move2OUT();
         }
-        return B.peek();
+        return OUT.peek();
     }
 
     public int size() {
-        return A.size() + B.size();
+        return IN.size() + OUT.size();
     }
 
     public boolean isEmpty() {
-        return A.isEmpty() && B.isEmpty();
+        return IN.isEmpty() && OUT.isEmpty();
     }
 
-    private void move2B() {
-        while (!A.isEmpty()) {
-            B.push(A.pop());
+    private void move2OUT() {
+        while (!IN.isEmpty()) {
+            OUT.push(IN.pop());
         }
     }
 }
