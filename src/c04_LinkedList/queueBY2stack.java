@@ -1,4 +1,4 @@
-package c04_QueueStack;
+package c04_LinkedList;
 
 import java.util.Deque;
 import java.util.LinkedList;
