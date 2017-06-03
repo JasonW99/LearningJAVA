@@ -2,6 +2,7 @@ package c06_PriorityQueueAndGraph;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.PriorityQueue;
 
 public class kSmallestInUnsortedArray {
@@ -10,18 +11,26 @@ public class kSmallestInUnsortedArray {
         if (k == 0) {
             return result;
         }
-        PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>(k, Collections.reverseOrder());
-        for (int i = 0; i < k; i++) {
-            maxHeap.offer(array[i]);
-        }
-        for (int i = k; i < array.length; i++) {
-            if (array[i] <= maxHeap.peek()) {
+//        PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>(k, Collections.reverseOrder());
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>(k, new Comparator<Integer>(){
+            @Override
+            public int compare(Integer int1, Integer int2) {
+                if (int1 == int2) {
+                    return 0;
+                }
+                return int1 > int2 ? -1 : 1;
+            }
+        });
+        for (int i = 0; i < array.length; i++) {
+            if (i < k) {
+                maxHeap.offer(array[i]);
+            } else if (array[i] < maxHeap.peek()) {
                 maxHeap.poll();
                 maxHeap.offer(array[i]);
             }
         }
-        for (int i = 0; i < k; i++) {
-            result[k - 1 - i] = maxHeap.poll();
+        for (int i = k - 1; i >= 0; i--) {
+            result[i] = maxHeap.poll();
         }
         return result;
     }

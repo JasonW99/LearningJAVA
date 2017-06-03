@@ -44,8 +44,8 @@ public class kSmallestInSortedMatrix {
 
     public static void main(String[] args) {
         kSmallestInSortedMatrix test = new kSmallestInSortedMatrix();
-        int[][] matrix = {{1, 3, 5, 7}, {2, 4, 8, 9}, {3, 5, 11, 15}, {6, 8, 13, 18}};
-        int result = test.solve(matrix, 8);
+        int[][] matrix = {{1,3,5,7},{2,4,8,9},{3,5,11,15},{6,8,13,18}};
+        int result = test.solve(matrix, 12);
         System.out.println(result);
     }
 }
