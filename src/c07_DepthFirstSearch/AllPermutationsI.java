@@ -15,7 +15,7 @@ public class AllPermutationsI {
     }
 
     private void permutationRecur(char[] input, List<String> result, int level) {
-        if (level == input.length - 1) {
+        if (level == input.length) {
             result.add(new String(input));
             return;
         }
