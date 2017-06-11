@@ -1,49 +1,43 @@
 package c08_HashTableAndString1;
 
+import java.util.*;
+
 public class KFrequentWord {
-
-
-
-}
-
-
-/**
-public class Solution {
-    public String[] topKFrequent(String[] combo, int k) {
-        if (combo.length == 0) {
+    public String[] solve(String[] compo, int k) {
+        if (compo.length == 0) {
             return new String[0];
         }
-        Map<String, Integer> map = new HashMap<>();
-        for (int i = 0; i < combo.length; i++) {
-            Integer count = map.get(combo[i]);
-            if (count == null) {
-                count = 0;
+        Map<String, Integer> map = new HashMap<String, Integer>();
+        for (String currStr : compo) {
+            if (map.get(currStr) == null) {
+                map.put(currStr, 1);
+            } else {
+                map.put(currStr, map.get(currStr) + 1);
             }
-            map.put(combo[i], count+1);
         }
         k = Math.min(k, map.size());
-        PriorityQueue<String> minHeap = new PriorityQueue<>(k, new Comparator<String>(){
+        PriorityQueue<String> minHeap = new PriorityQueue<String>(k, new Comparator<String>(){
             @Override
-            public int compare (String o1, String o2) {
-                if (map.get(o1) == map.get(o2)) {
+            public int compare(String s1, String s2) {
+                if (map.get(s1) == map.get(s2)) {
                     return 0;
                 }
-                return map.get(o1) < map.get(o2) ? -1: 1;
+                return map.get(s1) < map.get(s2) ? -1 : 1;
             }
         });
-        for (String cur: map.keySet()) {
+        for (String uniqueStr : map.keySet()) {
             if (minHeap.size() < k) {
-                minHeap.offer(cur);
-            } else if (map.get(cur) > map.get(minHeap.peek())) {
+                minHeap.offer(uniqueStr);
+            } else if (map.get(uniqueStr) > map.get(minHeap.peek())) {
                 minHeap.poll();
-                minHeap.offer(cur);
+                minHeap.offer(uniqueStr);
             }
         }
         String[] result = new String[k];
-        for (int i = k-1; i >= 0; i--) {
+        for (int i = k - 1; i >= 0; i--) {
             result[i] = minHeap.poll();
         }
         return result;
     }
 }
- **/
+
