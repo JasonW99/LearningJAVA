@@ -7,19 +7,32 @@ public class ReverseWordI {
         }
         char[] array = input.toCharArray();
         int start = 0;
-        while (array[start] == ' ') {
-            start++;
-        }
-        int end = start + 1;
-        while (start < end && end < array.length) {
-            while (array[end] != ' ') {
+        while (start < array.length) {
+            while (start < array.length && array[start] == ' ') {
+                start++;
+            }
+            int end = start + 1;
+            while (end < array.length && array[end] != ' ') {
                 end++;
             }
             reverse(array, start, end - 1);
-            start = end;
+            start = end + 1;
         }
         reverse(array, 0, array.length - 1);
         return new String(array);
+    }
+
+    private void reverse(char[] array, int i, int j) {
+        while (i < j) {
+            char temp = array[i];
+            array[i++] = array[j];
+            array[j--] = temp;
+        }
+    }
+
+    public static void main(String[] args) {
+        ReverseWordI test = new ReverseWordI();
+        System.out.print(test.solve("miao miao   love mao mao   "));
     }
 
 
