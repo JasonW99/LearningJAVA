@@ -47,39 +47,42 @@ public class StringReplace {
     private String replaceString(char[] array, int len, String t, Deque<Integer> index) {
         char[] repStr = t.toCharArray();
         int finalLen = array.length - index.size() * (len - repStr.length);
-        int newI = index.peek();
-        int curr = index.poll();
-        while (newI < finalLen) {
-            int next = index.peek() == null ? array.length : index.poll();
-            for (int i = 0; i < repStr.length; i++) {
-                array[newI++] = repStr[i];
+        int slow = 0;
+        int fast = 0;
+        int flag = index.poll();
+        while (fast < array.length) {
+            if (fast < flag) {
+                array[slow++] = array[fast++];
+            } else {
+                flag = index.peek() == null ? array.length : index.poll();
+                fast = fast + len;
+                for (int i = 0; i < repStr.length; i++) {
+                    array[slow++] = repStr[i];
+                }
             }
-            for (int i = curr + len; i < next; i++) {
-                array[newI++] = array[i];
-            }
-            curr = next;
         }
         return new String(array, 0, finalLen);
     }
 
     private String buildString(char[] array, int len, String t, Deque<Integer> index) {
         StringBuilder result = new StringBuilder();
-        int curr = 0;
-        int next = index.peek() == null ? array.length : index.poll();
-        result.append(new String(array, curr, next - curr));
-        curr = next;
-        while (curr < array.length) {
-            next = index.peek() == null ? array.length : index.poll();
-            result.append(t);
-            result.append(new String(array, curr + len, next - curr - len));
-            curr = next;
+        int i = 0;
+        int flag = index.poll();
+        while(i < array.length) {
+            if (i < flag) {
+                result.append(array[i++]);
+            } else {
+                result.append(t);
+                i = i + len;
+                flag = index.peek() == null ? array.length : index.poll();
+            }
         }
         return new String(result);
     }
 
     public static void main(String[] args) {
         StringReplace test = new StringReplace();
-        System.out.println(test.solve( "docomoomomc","omo","o"));
+        System.out.println(test.solve( "docomobbomomc","omo","aa"));
     }
 }
 
