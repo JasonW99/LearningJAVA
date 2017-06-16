@@ -15,9 +15,9 @@ public class DecompressII {
     private int shortDecomp(char[] array) {
         int currNew = 0;
         for (int i = 1; i < array.length; i+=2) {
-            int digit = array[i] - '0';
-            if (digit >= 0 && digit <= 2) {
-                for (int j = 0; j < digit; j++) {
+            int num = array[i] - '0';
+            if (num >= 0 && num <= 2) {
+                for (int j = 0; j < num; j++) {
                     array[currNew++] = array[i - 1];
                 }
             } else {
@@ -39,8 +39,9 @@ public class DecompressII {
         int currOld = len - 1;
         int currNew = finalLen - 1;
         while (currOld >= 0) {
-            if (array[currOld] - '0' > 2 && array[currOld] - '0' <= 9) {
-                for (int i = 0; i < array[currOld] - '0'; i++) {
+            int num = array[currOld] - '0';
+            if (num > 2 && num <= 9) {
+                for (int i = 0; i < num; i++) {
                     result[currNew--] = array[currOld - 1];
                 }
                 currOld -= 2;
