@@ -1,14 +1,11 @@
 package c09_StringII;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class AllAnagrams {
-    public List<Integer> solve(String s, String I) {
+    public List<Integer> solve(String s, String l) {
         List<Integer> result = new ArrayList<Integer>();
-        if (s.length() == 0 || I.length() < s.length()) {
+        if (s.length() == 0 || l.length() < s.length()) {
             return result;
         }
         Map<Character, Integer> map = new HashMap<Character, Integer>();
@@ -20,11 +17,40 @@ public class AllAnagrams {
                 map.put(t, map.get(t) + 1);
             }
         }
-        findAnagram(I, map, result);
+        findAnagram(l, map, result, s.length());
         return result;
     }
 
-    private
+    private void findAnagram(String I, Map<Character, Integer> map, List<Integer> result, int len) {
+        int numOfNonZero = map.size();
+        int i = 0;
+        while (i < I.length()) {
+            if (map.get(I.charAt(i)) != null) {
+                map.put(I.charAt(i), map.get(I.charAt(i)) - 1);
+                if (map.get(I.charAt(i)) == 0) {
+                    numOfNonZero--;
+                }
+            }
+            if (numOfNonZero == 0) {
+                result.add(i - len + 1);
+            }
+            if (i >= len - 1 && map.get(I.charAt(i - len + 1)) != null) {
+                map.put(I.charAt(i - len + 1), map.get(I.charAt(i - len + 1)) + 1);
+                if (map.get(I.charAt(i - len + 1)) == 1) {
+                    numOfNonZero++;
+                }
+            }
+            i++;
+        }
+    }
+
+    public static void main(String[] args) {
+        AllAnagrams test = new AllAnagrams();
+        List<Integer> result = test.solve("ab", "abcbac");
+        for (Integer r : result) {
+            System.out.println(r);
+        }
+    }
 
 
 
