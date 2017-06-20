@@ -9,27 +9,35 @@ public class SpiralOrderTraverseI {
         if (matrix == null || matrix.length == 0) {
             return result;
         }
-        boolean[][] visited = new boolean[matrix.length][matrix[0].length];
-        SpiralRecur(matrix, 0, 0, result, visited);
+        SpiralRecur(matrix, result, 0);
         return result;
     }
 
-    private void SpiralRecur(int[][] matrix, int row, int col, List<Integer> result, boolean[][] visited) {
-        if (result.size() == matrix.length * matrix[0].length) {
+    private void SpiralRecur(int[][] matrix, List<Integer> result, int level) {
+        if (level == matrix.length / 2 + matrix.length % 2) {
             return;
         }
-        result.add(matrix[row][col]);
-        visited[row][col] = true;
-        if (col + 1 < matrix[0].length && !visited[row][col + 1]) {
-            SpiralRecur(matrix, row, col + 1, result, visited);
-        } else if (row + 1 < matrix.length && !visited[row + 1][col]) {
-            SpiralRecur(matrix, row + 1, col, result, visited);
-        } else if (col - 1 >= 0 && !visited[row][col - 1]) {
-            SpiralRecur(matrix, row, col - 1, result, visited);
+        if (level == matrix[0].length - level - 1) {
+            result.add(matrix[level][matrix[0].length - level - 1]);
         } else {
-            SpiralRecur(matrix, row - 1, col, result, visited);
+            for (int i = level; i < matrix[0].length - level - 1; i++) {
+                result.add(matrix[level][i]);
+            }
+            for (int i = level; i < matrix.length - level - 1; i++) {
+                result.add(matrix[i][matrix[0].length - level - 1]);
+            }
+            for (int i = matrix[0].length - level - 1; i > level; i--) {
+                result.add(matrix[matrix.length - level - 1][i]);
+            }
+            for (int i = matrix.length - level - 1; i > level; i--) {
+                result.add(matrix[i][level]);
+            }
         }
+        SpiralRecur(matrix, result, level + 1);
     }
+
+
+
 }
 
 /**
