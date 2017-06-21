@@ -1,4 +1,4 @@
-package DFSII;
+package c10_DFSII;
 
 public class AbbreviationMatching {
     public boolean solve(String input, String pattern) {

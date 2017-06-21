@@ -1,4 +1,4 @@
-package DFSII;
+package c10_DFSII;
 
 public class SpiralOrderGenerateII {
     public int[][] solve(int m, int n) {
