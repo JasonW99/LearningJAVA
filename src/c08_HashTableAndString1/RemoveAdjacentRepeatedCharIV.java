@@ -21,10 +21,9 @@ public class RemoveAdjacentRepeatedCharIV {
             if (slow == -1 || array[fast] != array[slow]) {
                 array[++slow] = array[fast++];
             } else {
-                while (fast + 1 < array.length && array[fast + 1] == array[fast]) {
+                while (fast < array.length && array[fast] == array[slow]) {
                     fast++;
                 }
-                fast++;
                 slow--;
             }
         }
