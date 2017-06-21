@@ -7,53 +7,31 @@ public class NQueen {
     public List<List<Integer>> solve (int n) {
         List<List<Integer>> result = new ArrayList<List<Integer>>();
         List<Integer> subResult = new ArrayList<Integer>();
-        boolean[] row = new boolean[n];
         boolean[] col = new boolean[n];
         boolean[] left2right = new boolean[2 * n - 1];
         boolean[] right2left = new boolean[2 * n - 1];
-
-
-
-    }
-
-
-
-
-}
-
-
-
-/**
-public class Solution {
-    public List<List<Integer>> nqueens(int n) {
-        List<List<Integer>> result = new ArrayList<>();
-        List<Integer> cur = new ArrayList<>();
-        boolean[] col = new boolean[n];
-        boolean[] pos_diag = new boolean[2 * n - 1];
-        boolean[] neg_diag = new boolean[2 * n - 1];
-        dfs(0, n, cur, result, col, pos_diag, neg_diag);
+        NQRecur(n, subResult, result, col, left2right, right2left, 0);
         return result;
     }
 
-    private void dfs(int level, int n, List<Integer> cur, List<List<Integer>> result, //
-                     boolean[] col, boolean[] pos_diag, boolean[] neg_diag) {
+    private void NQRecur(int n, List<Integer> subResult, List<List<Integer>> result, boolean[] col, boolean[] left2right, boolean[] right2left, int level) {
         if (level == n) {
-            result.add(new ArrayList<Integer>(cur));
+            result.add(new ArrayList<Integer>(subResult));
             return;
         }
         for (int i = 0; i < n; i++) {
-            if (!col[i] && !pos_diag[level + i] && !neg_diag[level - i + n - 1]) {
+            if (!col[i] && !left2right[level + n - i - 1] && !right2left[level + i]) {
                 col[i] = true;
-                pos_diag[level + i] = true;
-                neg_diag[level - i + n - 1] = true;
-                cur.add(i);
-                dfs(level + 1, n, cur, result, col, pos_diag, neg_diag);
-                cur.remove(cur.size() - 1);
+                left2right[level + n - i - 1] = true;
+                right2left[level + i] = true;
+                subResult.add(i);
+                NQRecur(n, subResult, result, col, left2right, right2left, level + 1);
                 col[i] = false;
-                pos_diag[level + i] = false;
-                neg_diag[level - i + n - 1] = false;
+                left2right[level + n - i - 1] = false;
+                right2left[level + i] = false;
+                subResult.remove(subResult.size() - 1);
             }
         }
     }
 }
-**/
+
