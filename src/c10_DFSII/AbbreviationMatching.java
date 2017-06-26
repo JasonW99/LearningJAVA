@@ -28,35 +28,28 @@ public class AbbreviationMatching {
     }
 }
 
-
 /**
 public class Solution {
     public boolean match(String input, String pattern) {
-        char[] array = input.toCharArray();
-        char[] match = pattern.toCharArray();
-        int i = 0;
-        int j = 0;
-        while (i < array.length && j < match.length) {
-            if (isNum(match[j])) {
+        int slow = 0;
+        int fast = 0;
+        while (slow < pattern.length() && fast < input.length()) {
+            if (isNum(pattern.charAt(slow))) {
                 int num = 0;
-                while (j < match.length && isNum(match[j])) {
-                    num = num * 10 + (match[j] - '0');
-                    j++;
+                while (slow < pattern.length() && isNum(pattern.charAt(slow))) {
+                    num = num * 10 + pattern.charAt(slow++) - '0';
                 }
-                i += num;
-            } else if (array[i] != match[j]) {
+                fast += num;
+            } else if (input.charAt(fast++) != pattern.charAt(slow++)) {
                 return false;
-            } else {
-                i++;
-                j++;
             }
         }
-        return i == array.length && j == match.length;
+        return slow == pattern.length() && fast == input.length();
     }
 
-    private boolean isNum(Character c) {
-        int i = c - '0';
-        return i >= 0 && i <= 9;
+    private boolean isNum(char c) {
+        int temp = c - '0';
+        return temp >= 0 && temp <= 9;
     }
 }
 **/
