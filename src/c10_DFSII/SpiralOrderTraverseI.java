@@ -71,3 +71,39 @@ public class Solution {
     }
 }
 **/
+/**
+public class Solution {
+    public List<Integer> spiral(int[][] matrix) {
+        // Write your solution here.
+        List<Integer> result = new ArrayList<Integer>();
+        if (matrix == null || matrix.length == 0) {
+            return result;
+        }
+        spiralRecur(matrix, 0, matrix[0].length - 1, 0, matrix.length - 1, result);
+        return result;
+    }
+
+    private void spiralRecur(int[][] matrix, int left, int right, int up, int down, List<Integer> result) {
+        if (left > right) {
+            return;
+        }
+        if (left == right) {
+            result.add(matrix[up][left]);
+            return;
+        }
+        for (int i = left; i < right; i++) {
+            result.add(matrix[up][i]);
+        }
+        for (int i = up; i < down; i++) {
+            result.add(matrix[i][right]);
+        }
+        for (int i = right; i > left; i--) {
+            result.add(matrix[down][i]);
+        }
+        for (int i = down; i > up; i--) {
+            result.add(matrix[i][left]);
+        }
+        spiralRecur(matrix, left + 1, right - 1, up + 1, down - 1, result);
+    }
+}
+**/
