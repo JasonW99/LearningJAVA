@@ -9,28 +9,29 @@ public class StringReplaceII {
         if (input == null || input.length() == 0 || input.length() < s.length()) {
             return input;
         }
-        List<Integer> index = new ArrayList<Integer>();
-        findMatch(input, s, index);
+        List<Integer> index = findMatch(input, s);
         if (index.isEmpty()) {
             return input;
         }
-        if (s.length() > t.length()) {
-            return shortReplace(input, s.length(), t, index);
-        } else {
-            return longReplace(input, s.length(), t, index);
+        char[] array = input.toCharArray();
+        if (s.length() >= t.length()) {
+            return shortReplace(array, s.length(), t, index);
         }
+        return longReplace(array, s.length(), t, index);
     }
 
-    private void findMatch(String input, String s, List<Integer> index) {
-        int i = 0;
-        while (i <= input.length() - s.length()) {
-            if (match(input, s, i)) {
-                index.add(i);
-                i += s.length();
+    private List<Integer> findMatch(String input, String s) {
+        List<Integer> result = new ArrayList<Integer>();
+        int curr = 0;
+        while (curr <= input.length() - s.length()) {
+            if (match(input, s, curr)) {
+                result.add(curr);
+                curr += s.length();
             } else {
-                i++;
+                curr++;
             }
         }
+        return result;
     }
 
     private boolean match(String input, String s, int i) {
@@ -42,43 +43,39 @@ public class StringReplaceII {
         return true;
     }
 
-    private String shortReplace(String input, int len, String t, List<Integer> index) {
-        char[] array = input.toCharArray();
-        char[] target = t.toCharArray();
-        int currOld = 0;
-        int currNew = 0;
-        int i = 0;
-        while (currOld < array.length) {
-            if (i < index.size() && currOld == index.get(i)) {
-                for (int j = 0; j < target.length; j++) {
-                    array[currNew++] = target[j];
+    private String shortReplace(char[] array, int len, String target, List<Integer> index) {
+        int newCurr = 0;
+        int oldCurr = 0;
+        int flagCurr = 0;
+        while (oldCurr < array.length) {
+            if (flagCurr < index.size() && oldCurr == index.get(flagCurr)) {
+                for (int i = 0; i < target.length(); i++) {
+                    array[newCurr++] = target.charAt(i);
                 }
-                currOld += len;
-                i++;
+                oldCurr += len;
+                flagCurr++;
             } else {
-                array[currNew++] = array[currOld++];
+                array[newCurr++] = array[oldCurr++];
             }
         }
-        return new String(array, 0, currNew);
+        return new String(array, 0, newCurr);
     }
 
-    private String longReplace(String input, int len, String t, List<Integer> index) {
-        char[] array = input.toCharArray();
-        char[] target = t.toCharArray();
-        int finalLen = array.length + index.size() * (target.length - len);
+    private String longReplace(char[] array, int len, String target, List<Integer> index) {
+        int finalLen = array.length + index.size() * (target.length() - len);
         char[] result = new char[finalLen];
-        int currOld = array.length - 1;
-        int currNew = finalLen - 1;
-        int i = index.size() - 1;
-        while (currOld >= 0) {
-            if (i >= 0 && currOld == index.get(i) + len - 1) {
-                for (int j = target.length - 1; j >= 0; j--) {
-                    result[currNew--] = target[j];
+        int newCurr = finalLen - 1;
+        int oldCurr = array.length - 1;
+        int flagCurr = index.size() - 1;
+        while (oldCurr >= 0) {
+            if (flagCurr >= 0 && oldCurr == index.get(flagCurr) + len - 1) {
+                for (int i = target.length() - 1; i >= 0; i--) {
+                    result[newCurr--] = target.charAt(i);
                 }
-                currOld -= len;
-                i--;
+                oldCurr -= len;
+                flagCurr--;
             } else {
-                result[currNew--] = array[currOld--];
+                result[newCurr--] = array[oldCurr--];
             }
         }
         return new String(result);
@@ -86,7 +83,7 @@ public class StringReplaceII {
 
     public static void main(String[] args) {
         StringReplaceII test = new StringReplaceII();
-        System.out.println(test.solve("aaabbbcccaaacc", "aaa", "xxxx"));
+        System.out.println(test.solve("aaabbbcccaaacc", "aaa", "x"));
     }
 }
 

@@ -41,6 +41,32 @@ public class ReverseWordI {
 }
 
 /**
+    public String solve(String input) {
+        if (input == null || input.length() <= 1) {
+            return input;
+        }
+        char[] array = input.toCharArray();
+        int start = 0;
+        for (int i = 0; i < array.length; i++) {
+            if ((i == 0) || (array[i] != ' ' && array[i - 1] == ' ')) {
+                start = i;
+            }
+            if ((i + 1== array.length) || (array[i] != ' ' && array[i + 1] == ' ')) {
+                if (start != -1) {
+                    reverse(array, start, i);
+                    start = -1;
+                }
+
+            }
+        }
+        reverse(array, 0, array.length - 1);
+        return new String(array);
+    }
+ */
+
+
+
+/**
 public class Solution {
     public String reverseWords(String input) {
         if (input == null) {
