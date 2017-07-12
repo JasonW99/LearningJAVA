@@ -13,28 +13,23 @@ public class LongestCrossOf1 {
         int[][] down2up = new int[n][m];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                if (i == 0 || j == 0) {
-                    if (i == 0) {
-                        up2down[i][j] = matrix[i][j];
-                        down2up[n - i - 1][j] = matrix[n - i - 1][j];
-                    } else {
-                        left2right[i][j] = matrix[i][j];
-                        right2left[i][m - j - 1] = matrix[i][m - j - 1];
-                    }
+                if (i == 0) {
+                    up2down[i][j] = matrix[i][j];
+                    down2up[n - i - 1][j] = matrix[n - i - 1][j];
+                } else if (j == 0) {
+                    left2right[i][j] = matrix[i][j];
+                    right2left[i][m - j - 1] = matrix[i][m - j - 1];
+                } else if (matrix[i][j] == 0){
+                    left2right[i][j] = 0;
+                    right2left[i][m - j - 1] = 0;
+                    up2down[i][j] = 0;
+                    down2up[n - i - 1][j] = 0;
                 } else {
-                    if (matrix[i][j] == 0) {
-                        left2right[i][j] = 0;
-                        right2left[i][m - j - 1] = 0;
-                        up2down[i][j] = 0;
-                        down2up[n - i - 1][j] = 0;
-                    } else {
-                        left2right[i][j] = left2right[i][j - 1] + 1;
-                        right2left[i][m - j - 1] = right2left[i][m - j] + 1;
-                        up2down[i][j] = up2down[i - 1][j] + 1;
-                        down2up[n - i - 1][j] = down2up[n - i][j] + 1;
-                    }
+                    left2right[i][j] = left2right[i][j - 1] + 1;
+                    right2left[i][m - j - 1] = right2left[i][m - j] + 1;
+                    up2down[i][j] = up2down[i - 1][j] + 1;
+                    down2up[n - i - 1][j] = down2up[n - i][j] + 1;
                 }
-
             }
         }
         int max = 0;
