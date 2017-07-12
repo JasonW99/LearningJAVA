@@ -1,4 +1,4 @@
-package c14_DynamicProgrammingIII;
+package c14_DynamicProgramming03;
 
 public class LongestConsecutive1 {
     public int solve(int[] array) {
