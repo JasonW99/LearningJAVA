@@ -1,7 +1,7 @@
 package c15_Probability;
 
 public class R7UsingR5 {
-    R5 RandomFive = new R5();
+    private R5 RandomFive = new R5();
     public int solve() {
         int propose = 24; // need the proposed number within range [0, 23)
         while (propose > 20) { // suppose the proposed number is generated from a 5x5 matrix, with equal probability. (ignore the last 4 digits)
