@@ -25,7 +25,7 @@ public class Solution {
         result[result.length - 1] = true;
         for (int i = result.length - 2; i >= 0; i--) {
             for (int j = 1; j <= array[i]; j++) {
-                if (result[i + j]) {
+                if (i + j < result.length && result[i + j]) {
                     result[i] = true;
                     break;
                 }
