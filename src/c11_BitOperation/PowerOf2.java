@@ -24,3 +24,20 @@ public class PowerOf2 {
         System.out.println(test.solve2(8));
     }
 }
+
+/**
+public class Solution {
+    public boolean isPowerOfTwo(int number) {
+        if (number <= 0) {
+            return false;
+        }
+        while (number > 1) {
+            if (number % 2 == 1) {
+                return false;
+            }
+            number /= 2;
+        }
+        return true;
+    }
+}
+**/

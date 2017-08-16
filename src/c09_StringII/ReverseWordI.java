@@ -41,7 +41,7 @@ public class ReverseWordI {
 }
 
 /**
-    public String solve(String input) {
+    public String divide(String input) {
         if (input == null || input.length() <= 1) {
             return input;
         }

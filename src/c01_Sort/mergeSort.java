@@ -3,22 +3,22 @@ package c01_Sort;
 import java.util.Arrays;
 
 public class mergeSort {
-    public int[] solve(int[] array){
+    public int[] divide(int[] array){
         if(array == null || array.length <= 1){
             return array;
         }
         int[] helper = new int[array.length];
-        solve(array, helper, 0, array.length - 1);
+        divide(array, helper, 0, array.length - 1);
         return array;
     }
 
-    private void solve(int[] array, int[] helper, int start, int end) {
+    private void divide(int[] array, int[] helper, int start, int end) {
         if (start >= end) {
             return;
         }
         int mid = start + (end - start) / 2;
-        solve(array, helper, start, mid);
-        solve(array, helper, mid + 1, end);
+        divide(array, helper, start, mid);
+        divide(array, helper, mid + 1, end);
         merge(array, helper, start, end, mid);
     }
 
@@ -43,7 +43,7 @@ public class mergeSort {
     public static void main(String[] args){
         mergeSort test = new mergeSort();
         int[] input = {8, -3, 5, 9, 88, -2};
-        input = test.solve(input);
+        input = test.divide(input);
         System.out.println(Arrays.toString(input));
     }
 }
