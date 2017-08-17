@@ -19,13 +19,18 @@ public class R7UsingR5 {
 public class Solution {
     public int random7() {
         // write your solution here
-        // you can use R5.random5() for generating
+        // you can use RandomFive.random5() for generating
         // 0 - 4 with equal probability.
-        int sol = 21;
-        while (sol > 20) {
-            sol = R5.random5() * 5 + R5.random5();
+        while (true) {
+            //            int first = RandomFive.random5();
+            //            int second = RandomFive.random5();
+            //            int random = first + second * 5;
+            int random = RandomFive.random5() + 5 * RandomFive.random5();
+            if (random < 21) {
+                return random % 7;
+            }
         }
-        return sol % 7;
     }
 }
+
 **/

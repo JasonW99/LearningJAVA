@@ -17,3 +17,28 @@ public class MoveZeros {
         return array;
     }
 }
+
+/**
+public class Solution {
+    public int[] moveZero(int[] array) {
+        if (array.length <= 1) {
+            return array;
+        }
+        int slow = 0;
+        int fast = 0;
+        while (fast < array.length) {
+            if (array[fast] != 0) {
+                swap(array, slow++, fast);
+            }
+            fast++;
+        }
+        return array;
+    }
+
+    private void swap(int[] array, int i, int j) {
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+}
+ **/

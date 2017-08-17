@@ -19,3 +19,22 @@ public class Percentile {
         return index - 1;
     }
 }
+
+/**
+public class Solution {
+    public int percentile95(List<Integer> lengths) {
+        int[] histogram = new int[4097];
+        for (Integer curr : lengths) {
+            histogram[curr]++;
+        }
+        double accumCount = lengths.size() * 0.95;
+        for (int i = 0; i < histogram.length - 1; i++) {
+            accumCount -= histogram[i];
+            if (accumCount <= 0) {
+                return i;
+            }
+        }
+        return -1;
+    }
+}
+**/

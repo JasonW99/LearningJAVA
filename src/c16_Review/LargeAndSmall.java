@@ -22,3 +22,36 @@ public class LargeAndSmall {
         array[j] = temp;
     }
 }
+
+/**
+public class Solution {
+    public int[] largestAndSmallest(int[] array) {
+        int left = 0;
+        int right = array.length - 1;
+        while (left < right) {
+            if (array[left] > array[right]) {
+                swap(array, left, right);
+            }
+            left++;
+            right--;
+        }
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
+        while (left >= 0) {
+            min = Math.min(array[left], min);
+            left--;
+        }
+        while(right < array.length) {
+            max = Math.max(max, array[right]);
+            right++;
+        }
+        return new int[] {max, min};
+    }
+
+    private void swap(int[] array, int i, int j) {
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+}
+**/

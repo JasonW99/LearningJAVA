@@ -38,7 +38,44 @@ public class MedianTrack {
     }
 }
 
+/**
+public class Solution {
+    private PriorityQueue<Integer> left;
+    private PriorityQueue<Integer> right;
 
+    public Solution() {
+        // add new fields and complete the constructor if necessary.
+        left = new PriorityQueue<Integer>(Collections.reverseOrder());
+        right = new PriorityQueue<Integer>();
+    }
+
+    public void read(int value) {
+        // write your implementation here.
+        if (right.isEmpty() || value >= right.peek()) {
+            right.offer(value);
+        } else {
+            right.offer(value);
+        }
+        if (right.size() - left.size() > 1) {
+            left.offer(right.poll());
+        }
+        if (left.size() - right.size() > 1) {
+            right.offer(left.poll());
+        }
+    }
+
+    public Double median() {
+        // write your implementation here.
+        if (left.isEmpty()) {
+            return right.isEmpty() ? null : (double) right.peek();
+        }
+        if (left.size() == right.size()) {
+            return (double) (left.peek() + right.peek()) / 2;
+        }
+        return left.size() > right.size() ? (double) left.peek() : (double) right.peek();
+    }
+}
+**/
 
 
 
