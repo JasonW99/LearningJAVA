@@ -28,6 +28,37 @@ public class LargestSubMatrix {
 }
 
 
+// public class Solution {
+//   public int largest(int[][] matrix) {
+//     if (matrix.length == 0 || matrix[0].length == 0) {
+//       return 0;
+//     }
+//     int n = matrix.length;
+//     int m = matrix[0].length;
+//     for (int i = 0; i < n; i++) {
+//       for (int j = 1; j < m; j++) {
+//         matrix[i][j] += matrix[i][j - 1];
+//       }
+//     }
+
+//     int result = Integer.MIN_VALUE;
+//     for (int right = 0; right < m; right++) {
+//       for (int left = 0; left <= right; left++) {
+//         int currMax = Integer.MIN_VALUE;
+//         for (int i = 0; i < n; i++) {
+//           int curr = left == 0 ? matrix[i][right] : matrix[i][right] - matrix[i][left - 1];
+//           currMax = currMax <= 0 ? curr : currMax + curr;
+//           result = Math.max(result, currMax);
+//         }
+//       }
+//     }
+
+//     return result;
+//   }
+// }
+
+
+
 /**
 public class Solution {
     public int largest(int[][] matrix) {
