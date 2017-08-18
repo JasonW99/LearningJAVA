@@ -18,7 +18,7 @@ package c47_RandomLeetC;
 import java.util.*;
 
 public class WordBreak140 {
-    public List<String> wordBreak(String s, String[] wordDict) {
+    public List<String> wordBreak1(String s, String[] wordDict) {
         Set<String> set = new HashSet<>();
         for (String curr : wordDict) {
             set.add(curr);
@@ -44,9 +44,40 @@ public class WordBreak140 {
         return map.get(n - 1);
     }
 
+    public List<String> wordBreak2(String s, String[] wordDict) {
+        Set<String> set = new HashSet<>();
+        for (String curr : wordDict) {
+            set.add(curr);
+        }
+        Map<String, List<String>> map = new HashMap<>();
+        return breakRecur(s, set, map);
+    }
+
+    private List<String> breakRecur(String s, Set<String> set, Map<String, List<String>> map) {
+        if (map.get(s) != null) {
+            return map.get(s);
+        }
+        List<String> curr = new ArrayList<>();
+        if (set.contains(s)) {
+            curr.add(s);
+        }
+        int end = s.length() - 1;
+        for (int start = end; start > 0; start--) {
+            String t = s.substring(start, end + 1);
+            if (set.contains(t) && breakRecur(s.substring(0, start), set, map).size() > 0) {
+                List<String> temp = map.get(s.substring(0, start));
+                for (String tempCurr : temp) {
+                    curr.add(tempCurr + " " + t);
+                }
+            }
+        }
+        map.put(s, curr);
+        return map.get(s);
+    }
+
     public static void main(String[] args) {
         WordBreak140 test = new WordBreak140();
-        List<String> result = test.wordBreak("catsandgod", new String[] {"cat", "cats", "and", "sand", "god"});
+        List<String> result = test.wordBreak2("catsandgod", new String[] {"cat", "cats", "and", "sand", "god"});
         for (String curr : result) {
             System.out.println(curr);
         }
