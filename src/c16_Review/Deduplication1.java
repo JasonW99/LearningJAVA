@@ -17,4 +17,13 @@ public class Deduplication1 {
         }
         return Arrays.copyOf(array, slow + 1);
     }
+
+    public static void main(String[] args) {
+        Deduplication1 test = new Deduplication1();
+        int[] input = {2, 3, 3, 4};
+        int[] result = test.solve(input);
+        for(int i: result) {
+            System.out.println(i);
+        }
+    }
 }

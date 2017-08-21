@@ -1,4 +1,4 @@
-package c05_BinartTree;
+package c05_BinaryTree;
 
 import java.util.ArrayList;
 import java.util.Deque;

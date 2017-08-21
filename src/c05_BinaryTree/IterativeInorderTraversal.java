@@ -1,29 +1,27 @@
-package c05_BinartTree;
+package c05_BinaryTree;
 
-import java.util.ArrayList;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 
-public class IterativePreorderTraversal {
+public class IterativeInorderTraversal {
     public List<Integer> solve(TreeNode root) {
         if (root == null) {
             return new LinkedList<Integer>();
         }
-        List<Integer> result = new ArrayList<Integer>();
+        List<Integer> result = new LinkedList<Integer>();
         Deque<TreeNode> stack = new LinkedList<TreeNode>();
         while (root != null) {
-            result.add(root.key);
             stack.push(root);
             root = root.left;
         }
         while (!stack.isEmpty()) {
-            root = stack.pop();
-            root = root.right;
-            while (root != null) {
-                result.add(root.key);
-                stack.push(root);
-                root = root.left;
+            TreeNode curr = stack.pop();
+            result.add(curr.key);
+            curr = curr.right;
+            while (curr != null) {
+                stack.push(curr);
+                curr = curr.left;
             }
         }
         return result;

@@ -1,4 +1,4 @@
-package c05_BinartTree;
+package c05_BinaryTree;
 
 public class TreeNode {
     public int key;

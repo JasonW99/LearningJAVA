@@ -1,4 +1,4 @@
-package c05_BinartTree;
+package c05_BinaryTree;
 
 public class checkIsBalanced {
     public boolean solve(TreeNode root) {

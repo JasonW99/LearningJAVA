@@ -3,7 +3,7 @@ package c15_Probability;
 /**
 public class R1000UsingR5 {
     private R5 RandomFive = new R5();
-    public int solve() {
+    public int delete() {
         int propose = 3000;
         while (propose > 2999) {
             propose = 625 * RandomFive.random5() + 125 * RandomFive.random5() + 25 * RandomFive.random5() + 5 * RandomFive.random5() + RandomFive.random5();

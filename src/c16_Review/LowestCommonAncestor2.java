@@ -33,6 +33,17 @@ public class LowestCommonAncestor2 {
     }
 }
 
+/**
+ * another approach
+ * time O(height)
+ * space O(height)
+ *
+ * step 1: find all the ancestor of One, store them in a HashSet
+ * step 2: check if the ancestor of Two was in that HashSet*
+ *
+ * **/
+
+
 
 /**
 public class Solution {

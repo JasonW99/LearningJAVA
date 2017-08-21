@@ -1,6 +1,6 @@
 package c17_ReviewII;
 
-import c05_BinartTree.TreeNode;
+import c05_BinaryTree.TreeNode;
 
 public class MaxSumPath {
     public int solve(TreeNode root) {

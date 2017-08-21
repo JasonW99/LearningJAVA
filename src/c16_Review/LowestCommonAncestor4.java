@@ -1,7 +1,7 @@
 package c16_Review;
 
 
-import c05_BinartTree.TreeNode;
+import c05_BinaryTree.TreeNode;
 
 import java.util.HashSet;
 import java.util.List;

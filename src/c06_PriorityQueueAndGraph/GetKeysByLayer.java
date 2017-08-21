@@ -1,6 +1,6 @@
 package c06_PriorityQueueAndGraph;
 
-import c05_BinartTree.TreeNode;
+import c05_BinaryTree.TreeNode;
 
 import java.util.ArrayList;
 import java.util.Deque;
