@@ -7,7 +7,36 @@ import java.util.LinkedList;
 
 public class ReconstructBSTWithPostorderTrII {
     public TreeNode solve(int[] post) {
+        if (post.length == 0) {
+            return null;
+        }
+        return constructRecur(post, 0, post.length - 1);
+    }
 
+    private TreeNode constructRecur(int[] post, int start, int end) {
+        if (start > end) {
+            return null;
+        }
+        TreeNode root = new TreeNode(post[end]);
+        if (start == end) {
+            return root;
+        }
+        int rightStart = findMinLarge(post, start, end, root.key);
+        root.right = constructRecur(post, rightStart, end - 1);
+        root.left = constructRecur(post, start, rightStart - 1);
+        return root;
+    }
+
+    private int findMinLarge(int[] array, int start, int end, int target) {
+        while (start < end) {
+            int mid = start + (end - start) / 2;
+            if (array[mid] >= target) {
+                end = mid;
+            } else {
+                start = mid + 1;
+            }
+        }
+        return end;
     }
 }
 
