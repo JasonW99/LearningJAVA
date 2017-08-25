@@ -35,8 +35,29 @@ public class CopyUndirectedGraph {
     }
 }
 
+/**
+public class CopyUndirectedGraph {
+    class Node {
+        int value;
+        List<Node> neighbors;
+    }
 
-
+    public Node cloneGraph(Node input, Map<Node, Node> lookup) {
+        if (input == null) {
+            return null;
+        }
+        if (lookup.containsKey(input)) {
+            return lookup.get(input);
+        }
+        Node copyNode = new Node(input.value);
+        lookup.put(input, copyNode);
+        for (Node neighbor : input.neighbors) {
+            copyNode.neighbors.add(cloneGraph(neighbor, lookup));
+        }
+        return copyNode;
+    }
+}
+**/
 /**
 public class Solution {
     public List<GraphNode> copy(List<GraphNode> graph) {
