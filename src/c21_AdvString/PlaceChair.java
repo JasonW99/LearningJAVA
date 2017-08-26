@@ -60,6 +60,7 @@ public class PlaceChair {
                 //if (gym[currNeighbor.row][currNeighbor.col] == OB || gym[currNeighbor.row][currNeighbor.col] == EQ) {
                 if (gym[currNeighbor.row][currNeighbor.col] == OB) {
                     newCost[currNeighbor.row][currNeighbor.col] = Integer.MAX_VALUE;
+                    updateTotalCost(currNeighbor.row, currNeighbor.col, newCost, totalCost);
                 } else if (!visited[currNeighbor.row][currNeighbor.col]) {
                     queue.offer(currNeighbor);
                     newCost[currNeighbor.row][currNeighbor.col] = newCost[curr.row][curr.col] + 1;
