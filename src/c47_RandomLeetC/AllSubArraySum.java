@@ -39,10 +39,25 @@ public class AllSubArraySum {
         return result;
     }
 
+    public int solve3(int[] array) {
+        int n = array.length;
+        int result = array[0];
+        for (int i = 1; i < n; i++) {
+            array[i] += array[i - 1];
+        }
+
+        for (int i = 1; i < n; i++) {
+            result += array[i] * (i + 1) - array[i - 1];
+            array[i] += array[i - 1];
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
         AllSubArraySum test = new AllSubArraySum();
-        int[] input = new int[] {1, 4, 2};
+        int[] input = new int[] {1, 2,  3, 4};
         System.out.println(test.solve(input));
         System.out.println(test.solve2(input));
+        System.out.println(test.solve3(input));
     }
 }
