@@ -41,7 +41,7 @@ public class InsertBST {
  */
 /**
 public class Solution {
-    public TreeNode insert(TreeNode root, int key) {
+    public TreeNode insertNode(TreeNode root, int key) {
         if (root == null) {
             return new TreeNode(key);
         }

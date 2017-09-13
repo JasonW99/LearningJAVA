@@ -26,5 +26,11 @@ public class RandomFromIntervalFlow {
         System.out.println(test.sample());
         test.read(new int[] {5, 10});
         System.out.println(test.sample());
+        test.read(new int[] {15, 30});
+        System.out.println(test.sample());
+        test.read(new int[] {50, 130});
+        System.out.println(test.sample());
+        test.read(new int[] {200, 300});
+        System.out.println(test.sample());
     }
 }
