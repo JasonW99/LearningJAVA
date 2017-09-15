@@ -24,6 +24,21 @@ public class InsertBST {
         }
         return root;
     }
+
+    public TreeNode solve2 (TreeNode root, int key) {
+        if (root == null) {
+            return new TreeNode(key);
+        }
+        if (root.key == key) {
+            return root;
+        }
+        if (root.key > key) {
+            root.left = solve2(root.left, key);
+        } else {
+            root.right = solve2(root.right, key);
+        }
+        return root;
+    }
 }
 
 
